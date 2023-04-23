@@ -20,6 +20,11 @@ const fpsGraph = pane.addBlade({
   label: 'fpsgraph',
 })
 
+const params = { 
+  color: '#ffffff',
+  wireframe: false
+};
+
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -107,6 +112,7 @@ ctx.fillRect(0, 0, canvas2.width, canvas2.height);
 
 let texture = new THREE.CanvasTexture(canvas2);
 
+let cellMaterial = new THREE.MeshBasicMaterial({ map: texture, wireframe: params.wireframe });
 
 /**
  *  Model
@@ -118,7 +124,7 @@ gltfLoader.load(
 
     gltf.scene.traverse((child)=> {
       if(child.isMesh){
-        child.material = new THREE.MeshBasicMaterial({ map: texture, wireframe: false });
+        child.material = cellMaterial;
         cellGroup.add(child.clone());
       }
     });
@@ -189,7 +195,6 @@ renderer.outputEncoding = THREE.sRGBEncoding
 /**
  *  Gui 
  */
-const params = { color: '#ffffff' };
 
 // add a folder for the scene background color
 const folder = pane.addFolder({ title: 'Background Color' });
@@ -200,7 +205,9 @@ folder.addInput(params, 'color').on('change', () => {
 });
 
 
-
+folder.addInput(params, 'wireframe').on('change', (value) => {
+   cellMaterial.wireframe = params.wireframe
+})
 
 
 /**
