@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oorja cells configurator</title>
+    <style>
+        .wrap {
+            z-index: 100;
+            position: absolute;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas class="webgl"></canvas>
+    <div class="wrap">
+        <label for="x-dim" style="background-color: red;">X dimension:</label>
+        <input class="input" id="x-dim" type="number" value="1"><br>
+
+        <label for="y-dim" style="background-color: green;">Y dimension:</label>
+        <input class="input" id="y-dim" type="number" value="1"><br>
+
+        <label for="z-dim" style="background-color: blue;">Z dimension:</label>
+        <input class="input" id="z-dim" type="number" value="1"><br>
+
+        <button id="btn">Create Battery Pack</button>
+
+    </div>
+</body>
+
+</html>
